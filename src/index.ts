@@ -1,1 +1,2 @@
-export const Greeter = (name: string) => `Hello ${name}`;
+import engine from './engine';
+export default engine;

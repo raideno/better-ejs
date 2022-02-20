@@ -20,7 +20,8 @@
   },
   "keywords": [
     "view engine",
-    "express"
+    "express",
+    "ejs"
   ],
   "author": "raiden",
   "license": "ISC",
@@ -29,6 +30,7 @@
   },
   "homepage": "https://github.com/raideno/better-ejs#readme",
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/jest": "^27.4.0",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
