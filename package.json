@@ -2,7 +2,7 @@
   "name": "better-ejs",
   "version": "1.0.4",
   "description": "",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
