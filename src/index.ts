@@ -1,2 +1,4 @@
 import engine from './engine';
-export default engine;
+export default {
+  __express: engine,
+};
