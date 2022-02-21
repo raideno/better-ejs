@@ -17,7 +17,7 @@ npm install better-ejs
 
 ```js
 const app = express();
-const bjs = require('better-ejs');
+const { engine: bjs } = require('better-ejs');
 
 /*Tell express about better-ejs*/
 bjs(app);
