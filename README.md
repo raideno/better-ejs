@@ -1,5 +1,9 @@
 # Better-Ejs:
 
+<img alt="badge" src="https://img.shields.io/badge/-In%20developement-yellow">
+
+***Not fully ready to use***
+
 ## Install:
 
 ```
