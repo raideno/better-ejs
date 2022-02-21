@@ -76,3 +76,7 @@ app.listen(3000, () => console.log('[Port]:', 3000));
 ## Documentation
 
 `out(...data:string)`: To output something to the Html Document
+
+## Known Issues
+
+- Remove the access to variables defined in the `compiler/index.ts` file to the user to prevent future problems
