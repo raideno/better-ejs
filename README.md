@@ -21,7 +21,7 @@ app.set('view engine', 'bjs');
 
 app.get('/:user?', (req, res) => {
   const user = req.params.user | 'No One';
-  res.render('index', { user: user });
+  res.render('index', { user });
 });
 
 app.listen(3000, () => console.log('[Port]:', 3000));
@@ -46,7 +46,7 @@ app.listen(3000, () => console.log('[Port]:', 3000));
 </body>
 ```
 
-**components/navbar.bjs**
+**views/components/navbar.bjs**
 
 ```html
 <nav>
