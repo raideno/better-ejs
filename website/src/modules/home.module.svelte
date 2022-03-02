@@ -1,0 +1,98 @@
+<script lang="ts">
+    import illustration from '../assets/illustration.png';
+</script>
+
+<section id="home">
+    <div>
+        <div class="left">
+            <div class="first">
+                <h1># Better-Ejs</h1>
+                <p>Better and faster then Ejs with simple and intuitive syntax, similar syntax to jsx.</p>
+            </div>
+
+            <div class="second">
+                <h4># To Install</h4>
+                <ul>
+                    <li class="code">yarn add better-ejs</li>
+                    <li class="code">npm install better-ejs</li>
+                    <li class="code">pnpm install better-ejs</li>
+                </ul>
+            </div>
+        </div>
+        <div class="right">
+            <img src={illustration} alt="data"/>
+        </div>
+    </div>
+    <svg width="23" height="40" viewBox="0 0 23 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.71375 13.7184L11.0113 7.39345L17.3088 13.7184C17.5644 13.9762 17.8686 14.1808 18.2037 14.3204C18.5388 14.46 18.8982 14.5319 19.2613 14.5319C19.6243 14.5319 19.9837 14.46 20.3188 14.3204C20.6539 14.1808 20.9581 13.9762 21.2138 13.7184C21.4715 13.4628 21.6761 13.1586 21.8157 12.8235C21.9553 12.4884 22.0272 12.129 22.0272 11.7659C22.0272 11.4029 21.9553 11.0435 21.8157 10.7084C21.6761 10.3732 21.4715 10.0691 21.2138 9.81345L12.9638 1.56345C12.7081 1.30569 12.404 1.10111 12.0688 0.961495C11.7337 0.821881 11.3743 0.75 11.0113 0.75C10.6482 0.75 10.2888 0.821881 9.95366 0.961495C9.61855 1.10111 9.3144 1.30569 9.05875 1.56345L0.808752 9.81345C0.290917 10.3313 0 11.0336 0 11.7659C0 12.4983 0.290917 13.2006 0.808752 13.7184C1.32659 14.2363 2.02892 14.5272 2.76125 14.5272C3.49358 14.5272 4.19592 14.2363 4.71375 13.7184ZM17.3088 26.3134L11.0113 32.6384L4.71375 26.3134C4.45735 26.057 4.15295 25.8536 3.81794 25.7149C3.48293 25.5761 3.12386 25.5047 2.76125 25.5047C2.39864 25.5047 2.03958 25.5761 1.70457 25.7149C1.36955 25.8536 1.06516 26.057 0.808752 26.3134C0.552346 26.5699 0.348953 26.8742 0.210187 27.2093C0.0714214 27.5443 0 27.9033 0 28.2659C0 28.6286 0.0714214 28.9876 0.210187 29.3226C0.348953 29.6576 0.552346 29.962 0.808752 30.2184L9.05875 38.4684C9.3144 38.7262 9.61855 38.9308 9.95366 39.0704C10.2888 39.21 10.6482 39.2819 11.0113 39.2819C11.3743 39.2819 11.7337 39.21 12.0688 39.0704C12.404 38.9308 12.7081 38.7262 12.9638 38.4684L21.2138 30.2184C21.7316 29.7006 22.0225 28.9983 22.0225 28.2659C22.0225 27.5336 21.7316 26.8313 21.2138 26.3134C20.6959 25.7956 19.9936 25.5047 19.2613 25.5047C18.5289 25.5047 17.8266 25.7956 17.3088 26.3134Z" fill="#CA8DD5"/>
+    </svg>
+</section>
+
+<style lang="scss">
+    @mixin flex ($direction: row, $gap: 0rem, $justify-content: center, $align-items: center) {
+        gap: $gap;
+        display: flex;
+        align-items: $align-items;
+        flex-direction: $direction;
+        justify-content: $justify-content;
+    }
+
+    section {
+        padding: 64px 0;
+        min-height: 100vh;
+        @include flex($direction: column, $justify-content: space-between);
+
+        div {
+            flex-basis: 100%;
+            @include flex($justify-content: space-between);
+
+            .left {
+                @include flex($align-items: flex-start, $direction: column, $gap: 4rem);
+
+                .first {
+                    @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
+                    h1 {
+                        font-weight: bold;
+                        font-size: 74px;
+                        color: var(--color-rose-default);
+                    }
+                    p {
+                        font-size: 32px;
+                        color: var(--color-dark-text);
+                    }
+                }
+
+                .second {
+                    @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
+
+                    h4 {
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 32px;
+                        color: var(--color-white);
+                    }
+
+                    ul {
+                        @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
+                    }
+                }
+
+            }
+        }
+
+        svg {
+            animation: anim 1.25s infinite alternate-reverse;
+        }
+
+        @keyframes anim {
+            0% {
+                transform: translateY(-7px);
+                opacity: .75;
+            }
+            100% {
+                transform: translateY(-35px);
+                opacity: 0;
+            }
+        }
+    }
+</style>

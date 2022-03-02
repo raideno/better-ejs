@@ -1,0 +1,113 @@
+.container {
+  width: 100%;
+  height: 442px;
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  flex-direction: column;
+  background: var(--color-dark-code);
+  box-shadow: -2px 4px 8px 8px rgba(0, 0, 0, 0.0625);
+  overflow: hidden;
+}
+
+.header {
+  width: 100%;
+  margin-top: 0;
+  display: flex;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-dark-light);
+}
+
+.tabs {
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab {
+  opacity: 0.5;
+  height: 35px;
+  display: flex;
+  padding: 0px 1rem;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-white);
+  border-radius: 0.5rem;
+  color: var(--color-dark-background);
+  cursor: pointer;
+  transition: 0.125s ease-out;
+}
+
+.tab-active {
+  opacity: 1;
+}
+
+.tab:hover {
+  opacity: 0.75;
+}
+
+.active {
+  opacity: 1;
+}
+
+.button {
+  gap: 0.5rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-rose-default);
+  transition: 0.125s ease-out;
+}
+
+.button:hover {
+  opacity: 0.75;
+}
+
+.content {
+  gap: 1rem;
+  display: flex;
+  padding: 1rem;
+  max-width: 100%;
+  min-width: 100%;
+  height: 100%;
+  overflow: scroll;
+  scrollbar-color: var(--color-rose-default) var(--color-dark-background);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/*Hide scrollbar and keep functionality in Chrome, Safari and Opera*/
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+.text {
+  font-size: 1.25rem;
+  text-align: left;
+  flex-grow: 1;
+  cursor: text;
+  color: white;
+}
+
+.text-empty {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: auto;
+}
+
+.lines {
+  display: flex;
+  flex-direction: column;
+}
+
+.line-number {
+  font-size: 1.25rem;
+  text-align: right;
+  color: rgba(230, 230, 230, 0.3);
+}
