@@ -1,11 +1,32 @@
 <script lang="ts">
     import Code from '../components/code.component.svelte';
+
+    const defaultTabs = [{
+        name: "index.bjs",
+        active: true,
+        content: [
+            "<body>",
+            "{{ include(\"./navbar.bjs\", { title: \"I am a Title !\" }); }}",
+            "<h1>User: {{ out(user.username) }}</h1>",
+            "<h2>Age: {{ out(user.age) }}</h2>",
+            "<h2>Age: {{ user.age >= 18 ? out(\"Accepted\") : out(\"Mineur\", \"No\") }}</h2>",
+            "{{",
+            "if(true)",
+            "{",
+            "out(\"dsq\");",
+            "}",
+            "}}",
+            "</body>",
+            "</html>",
+        ]
+    }]
 </script>
 
 <section id="demo">
     <h1># Demo</h1>
-    <Code/>
-    <div class="text">You can find more examples <span><a href="https://github.com" target="_blank">here</a></span></div>
+    <Code defaultTabs={defaultTabs} />
+    <div class="text">You can find more examples <span><a href="https://github.com" target="_blank">here</a></span>
+    </div>
 </section>
 
 <style lang="scss">

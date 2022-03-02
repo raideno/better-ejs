@@ -1,24 +1,35 @@
 <script lang="ts">
     import Code from '../components/code.component.svelte';
-    const code = `<body>
-    {{ include("./navbar.bjs", { title: "I am a Title !" }); }}
-    <h1>User: {{ out(user.username) }}</h1>
-    <h2>Age: {{ out(user.age) }}</h2>
-    <h2>Age: {{ user.age >= 18 ? out("Accepted") : out("Mineur", "No") }}</h2>
-    {{
-        if(true)
-        {
-            out("dsq");
-        }
-    }}
-</body>
-</html>`;
 </script>
 
-<section id="demo">
-    <h1># Demo</h1>
-    <Code/>
-    <div class="text">You can find more examples <span><a href="https://github.com" target="_blank">here</a></span></div>
+<section id="documentation">
+    <h1># Documentation</h1>
+    <p>
+        Our goal is to make be the simplest and easiest possible, this is why there is only two things to not forget: require and out functions.You can find a full working example in our github.
+    </p>
+    <div>
+        <h2>## Get Started</h2>
+        <p>To start you have to install better-ejs in one of your express projects, to do this use one of this commands:</p>
+        <p>Then you have to tell express about better-ejs:</p>
+        <Code/>
+    </div>
+    <div>
+        <h2>## Functions</h2>
+        <div>
+            <p>
+                Out(...args: any[]): This function is like the native javascript console.log function, ittake a list of arguments and output them into the Html Document, you can give it anything you want and it will be formated to be outputed.
+            </p>
+            <Code/>
+            <p>Learn More About This Function here</p>
+        </div>
+        <div>
+            <p>
+                Out(...args: any[]): This function is like the native javascript console.log function, ittake a list of arguments and output them into the Html Document, you can give it anything you want and it will be formated to be outputed.
+            </p>
+            <Code/>
+            <p>Learn More About This Function here</p>
+        </div>
+    </div>
 </section>
 
 <style lang="scss">

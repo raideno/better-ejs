@@ -1,12 +1,18 @@
 <script lang="ts">
     export let value: string;
-    export let inputRef: HTMLInputElement;
+    export let verify: ((value: string) => boolean) = (_:string) => true;
+    export let inputRef: HTMLInputElement = null;
     export let label: string, height: string = "70px";
 </script>
 
 <div class="input-componenet-container">
     <div class="label">{label}</div>
-    <input class="input" bind:value={value} bind:this={inputRef} type="text" style="height: {height};"/>
+    <input 
+        type="text" 
+        class="input" 
+        bind:value={value} 
+        bind:this={inputRef} 
+        style="height: {height}; outline: {verify(value) ? 0 : 2}px solid red;"/>
 </div>
 
 <style>

@@ -13,7 +13,7 @@
 
 <style lang="scss">
     .navbar-container {
-        height: 90px;
+        height: var(--navbar-height);
         display: flex;
         padding: 0px 256px;
         flex-direction: row;

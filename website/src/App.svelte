@@ -1,12 +1,14 @@
 <script lang="ts">
     import { HomeSection, DemoSection, AboutSection } from './modules/';
     import NavBar from './components/navbar.component.svelte';
+import Documentation from './modules/documentation.module.svelte';
 </script>
 
 <div>
     <NavBar/>
     <main>
         <HomeSection/>
+        <Documentation/>
         <DemoSection/>
         <AboutSection/>
     </main>

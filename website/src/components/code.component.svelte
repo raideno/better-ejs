@@ -1,8 +1,10 @@
 <script lang="ts">
 
-    import './code.component.style.css';
-    import Eyeicon from "../assets/svgs/eye";
-    import Modal from './modal.component.svelte';
+    interface BrutTabInterface {
+        name: string;
+        active: boolean;
+        content: string[];
+    }
 
     interface TabInterface {
         name: string;
@@ -10,76 +12,51 @@
         content: string;
     }
 
+    export let defaultTabs: BrutTabInterface[] = [];
+
+    import './code.component.style.css';
+    import { afterUpdate } from "svelte";
+    import Eyeicon from "../assets/svgs/eye";
+    import Modal from './modal.component.svelte';
+    import focusAtEnd from "../utils/helpers/focusAtEnd";
+    import stringToHtml from "../utils/helpers/stringToHtml";
+
+    let isModalVisible = false;
     let codearea: HTMLDivElement;
-    let tabs: TabInterface[] = [];
+    let tabs: TabInterface[] = defaultTabs.map((tab) => ({ ...tab, content: stringToHtml(tab.content)}));
+    
     $: activetab = tabs.findIndex((tab) => tab.active);
     $: lines = activetab === -1 ? 0 : 1;
 
-    function keydownlistener(event:KeyboardEvent) {
-        console.log("Before:", codearea.children, lines)
-        if (event.key === "Backspace" && lines > 1 && codearea.children[lines - 1].textContent.length === 0) {
-            console.log("Should be deleted");
-            lines = lines - 1;
-            console.log("After:", codearea.children, lines)
-            return;
-        }
-        if (event.key === "Enter") lines = codearea.childElementCount + 1;
-        else {
-            if (codearea.childElementCount <= 1)  lines = 1;
-            else lines = codearea.childElementCount;
-        };
-        console.log("After:", codearea.children, lines)
-        if (event.key !== "Tab") return;
-        event.preventDefault();
-    }
+    /*not very optimized ! because it updates lines after each caracter is inputed, try console.log() to see how much times*/
+    afterUpdate(() => codearea ? lines = codearea.childElementCount || 1 : null);
 
-    function handleclick(index: number) {
-        if (activetab !== -1) {
-            codearea.removeEventListener("keydown", keydownlistener);
-            tabs[activetab].active = false;
-        };
+    function handleClick(index: number) {
+        if (activetab !== -1) tabs[activetab].active = false;
         tabs[index].active = true;
         tabs = [...tabs];
-        setTimeout(() => {
-            if (codearea) {
-                const selection = window.getSelection();
-                const range = document.createRange();  
-                selection.removeAllRanges();
-                range.selectNodeContents(codearea);
-                range.collapse(false);
-                selection.addRange(range);
-                codearea.focus();
-            }
-            lines = codearea.childElementCount;
-            codearea.addEventListener("keydown", keydownlistener);
-        }, 5);
+        setTimeout(() => codearea ? focusAtEnd(codearea) : null, 5);
     }
 
-    let isVisible = false;
-    
-    function handlemodal(event) {
+    function handleModalSubmit(event) {
         tabs = [...tabs, { name: event.detail.value, active: true, content: "" }]
-        handleclick(tabs.length - 1);
-        isVisible = false;
-    }
-
-    function createtab() {
-        isVisible = true;
+        handleClick(tabs.length - 1);
+        isModalVisible = false;
     }
 
 </script>
 
-{#if isVisible}
-    <Modal on:submit={handlemodal} />
+{#if isModalVisible}
+    <Modal on:submit={handleModalSubmit} />
 {/if}
 
 <div class="container">
     <div class="header">
         <div class="tabs">
             {#each tabs as tab, index (tab.name + index)}
-                <div class="tab {tab.active ? "tab-active" : ""}" on:click={handleclick.bind(null, index)}>{tab.name}</div>
+                <div class="tab {tab.active ? "tab-active" : ""}" on:click={handleClick.bind(null, index)}>{tab.name}</div>
             {/each}
-            <div class="tab" on:click={createtab}>+</div>
+            <div class="tab" on:click={() => isModalVisible = true}>+</div>
         </div>
         <div class="button">render {@html Eyeicon()}</div>
     </div>
