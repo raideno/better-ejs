@@ -30,10 +30,20 @@ body {
   background-color: var(--color-dark-background);
 }
 
+html {
+  scrollbar-color: var(--color-rose-default) var(--color-dark-background);
+  /*scrollbar-width: thin;*/
+}
+
 .code {
   font-style: normal;
   font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 1.5rem;
   color: var(--color-dark-text);
+}
+
+@media (max-width: 575px) {
+  html {
+    font-size: 0.75rem;
+  }
 }

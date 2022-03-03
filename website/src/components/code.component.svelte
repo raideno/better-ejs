@@ -1,5 +1,4 @@
 <script lang="ts">
-
     interface BrutTabInterface {
         name: string;
         active: boolean;
@@ -15,7 +14,11 @@
     export let defaultTabs: BrutTabInterface[] = [];
 
     import './code.component.style.css';
-    import { afterUpdate } from "svelte";
+    import {
+        afterUpdate,
+        beforeUpdate,
+        onMount
+    } from "svelte";
     import Eyeicon from "../assets/svgs/eye";
     import Modal from './modal.component.svelte';
     import focusAtEnd from "../utils/helpers/focusAtEnd";
@@ -23,8 +26,11 @@
 
     let isModalVisible = false;
     let codearea: HTMLDivElement;
-    let tabs: TabInterface[] = defaultTabs.map((tab) => ({ ...tab, content: stringToHtml(tab.content)}));
-    
+    let tabs: TabInterface[] = defaultTabs.map((tab) => ({
+        ...tab,
+        content: stringToHtml(tab.content)
+    }));
+
     $: activetab = tabs.findIndex((tab) => tab.active);
     $: lines = activetab === -1 ? 0 : 1;
 
@@ -39,11 +45,35 @@
     }
 
     function handleModalSubmit(event) {
-        tabs = [...tabs, { name: event.detail.value, active: true, content: "" }]
+        tabs = [...tabs, {
+            name: event.detail.value,
+            active: true,
+            content: ""
+        }]
         handleClick(tabs.length - 1);
         isModalVisible = false;
     }
 
+    onMount(() => {
+        return;
+        if (codearea) {
+            codearea.addEventListener("keypress", () => {
+                if (codearea) {
+                    setTimeout(() => {
+                        const newData = [];
+                        for (let key in codearea.children) {
+                            if (typeof codearea.children[key] === "object")
+                                newData.push(codearea.children[key].textContent);
+                        }
+                        console.log("Data:\n", codearea.innerText);
+                        tabs[activetab].content = stringToHtml(codearea.innerText.split("\n")
+                            .filter((data) => data !== ""));
+                        focusAtEnd(codearea);
+                    }, 5);
+                }
+            });
+        }
+    });
 </script>
 
 {#if isModalVisible}
@@ -67,7 +97,7 @@
             {/each}
         </div>
         {#if activetab !== -1}
-            <div class="text" bind:innerHTML={tabs[activetab].content} bind:this={codearea} contenteditable></div>
+            <div class="text" bind:innerHTML={tabs[activetab].content} bind:this={codearea} contenteditable spellcheck="false"></div>
         {:else}
             <div class="text text-empty">No Tab Selected :(</div>
         {/if}

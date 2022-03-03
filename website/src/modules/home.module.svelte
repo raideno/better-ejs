@@ -1,5 +1,7 @@
 <script lang="ts">
-    import { Scroll } from "../assets/svgs/index";
+    import {
+        Scroll
+    } from "../assets/svgs/index";
     import illustration from '../assets/illustration.png';
 </script>
 
@@ -21,77 +23,107 @@
             </div>
         </div>
         <div class="right">
-            <img src={illustration} alt="data"/>
+            <img src={illustration} alt="data" />
         </div>
     </div>
-    <Scroll className="home-module-icon-scroll-svg"/>
+    <div class="icon">
+        <Scroll className="home-module-icon-scroll-svg" />
+    </div>
 </section>
 
-<style lang="scss">
-    @mixin flex ($direction: row, $gap: 0rem, $justify-content: center, $align-items: center) {
-        gap: $gap;
+<style>
+    section {
+        padding: 4rem 0;
+        min-height: calc(100vh - var(--navbar-height));
+        gap: 0rem;
         display: flex;
-        align-items: $align-items;
-        flex-direction: $direction;
-        justify-content: $justify-content;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    section {
-        padding: 64px 0;
-        min-height: calc(100vh - var(--navbar-height));
-        @include flex($direction: column, $justify-content: space-between);
+    section div {
+        flex-basis: 100%;
+        gap: 0rem;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-        div {
-            flex-basis: 100%;
-            @include flex($justify-content: space-between);
+    .left {
+        gap: 4rem;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-            .left {
-                @include flex($align-items: flex-start, $direction: column, $gap: 4rem);
+    .first {
+        gap: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 
-                .first {
-                    @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
-                    h1 {
-                        font-weight: bold;
-                        font-size: 74px;
-                        color: var(--color-rose-default);
-                    }
-                    p {
-                        font-size: 32px;
-                        color: var(--color-dark-text);
-                    }
-                }
+    h1 {
+        font-weight: bold;
+        font-size: 4rem;
+        color: var(--color-rose-default);
+    }
 
-                .second {
-                    @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
+    p {
+        font-size: 2rem;
+        color: var(--color-dark-text);
+    }
 
-                    h4 {
-                        font-style: normal;
-                        font-weight: bold;
-                        font-size: 32px;
-                        color: var(--color-white);
-                    }
+    .second {
+        gap: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
 
-                    ul {
-                        @include flex($gap: 1.5rem, $justify-content: flex-start, $align-items: flex-start, $direction: column);
-                    }
-                }
+    h4 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 2rem;
+        color: var(--color-white);
+    }
 
-            }
+    ul {
+        gap: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    section :global(.home-module-icon-scroll-svg) {
+        animation: anim 1.25s infinite alternate-reverse;
+    }
+
+    @keyframes anim {
+        0% {
+            transform: translateY(-7px);
+            opacity: 0.75;
         }
 
-        :global(.home-module-icon-scroll-svg) {
-            animation: anim 1.25s infinite alternate-reverse;
+        100% {
+            transform: translateY(-35px);
+            opacity: 0;
         }
+    }
 
-        @keyframes anim {
-            0% {
-                transform: translateY(-7px);
-                opacity: .75;
-            }
-            100% {
-                transform: translateY(-35px);
-                opacity: 0;
-            }
+    @media (max-width: 1075px) {
+        section div {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .icon {
+            display: none;
         }
     }
 </style>

@@ -13,7 +13,7 @@
 <section id="about">
     <div class="texts">
         <h1># About</h1>
-        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In senectus eu, id aliquet cursus sit tincidunt ut. Faucibus tempor pharetra sed tortor. Non nulla justo a posuere eget sit amet egestas. Pellentesque egestas mattis accumsan arcu consectetur nibh praesent massa aenean. Elementum pellentesque tincidunt magna arcu senectus non posuere. Aliquam dignissim in ultricies fermentum urna libero elit blandit. Nibh ut ante erat lectus vitae bibendum in ridiculus.</p>
+        <p class="text">Simply, Better-Ejs is just a small npm package that can be used with express and other backend nodejs librarys to create html templates to be rendered.</p>
     </div>
     <div class="about-module-content">
         <div class="left">
@@ -44,7 +44,7 @@
     }
     h1 {
         font-weight: bold;
-        font-size: 74px;
+        font-size: 4rem;
         color: var(--color-rose-default);
     }
     .text {
